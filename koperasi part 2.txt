@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koperasi Konsumen Anugerah Prima Sejahtera</title>
+<style>
+body {font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f4f9f4;}
+header {
+  padding: 20px 40px;
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+}
+header h1 {
+  margin:0;
+  font-size:2em;
+  font-weight:bold;
+}
+header p {margin:5px 0 0; font-style:italic; color:#ffff66;}
+
+nav {background-color:#388e3c; display:flex; justify-content:space-between; align-items:center; padding:0 20px; position:sticky; top:0; z-index:100; flex-wrap:wrap;}
+nav .menu {display:flex; flex-wrap:wrap;}
+nav a {color:white; padding:14px 20px; text-decoration:none; font-weight:bold; transition:background 0.3s, color 0.3s;}
+nav a:hover {background-color:#1b5e20; border-radius:5px;}
+.auth-buttons {display:flex; align-items:center;}
+.auth-buttons a {margin-left:10px; background-color:white; color:#388e3c; border-radius:5px; padding:8px 12px; cursor:pointer; text-decoration:none;}
+.auth-buttons a:hover {background-color:#c8e6c9;}
+
+section {padding:40px 20px; max-width:1000px; margin:auto;}
+h2 {color:#2e7d32; margin-bottom:20px;}
+footer {background-color:#2e7d32; color:white; text-align:center; padding:20px 0;}
+.produk {display:flex; flex-wrap:wrap; gap:20px;}
+.produk div {background:white; padding:20px; flex:1 1 200px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer;}
+.produk div:hover {transform:translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.2);}
+button {background-color:#2e7d32; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold; transition: background 0.3s;}
+button:hover {background-color:#1b5e20;}
+form {display:flex; flex-direction:column; gap:15px; max-width:500px;}
+input, textarea, select {padding:10px; border:1px solid #ccc; border-radius:5px; width:100%;}
+table {width:100%; border-collapse:collapse; margin-top:20px;}
+th, td {border:1px solid #ccc; padding:10px; text-align:center;}
+th {background-color:#388e3c; color:white;}
+#saranMasuk, #preview, #galeriFoto {margin-top:20px; background:white; padding:15px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+#daftarSaran li, #daftarAnggota li, #daftarToko li {margin-bottom:8px;}
+
+/* Modal */
+.modal {display:none; position:fixed; z-index:200; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.5);}
+.modal-content {background:white; margin:10% auto; padding:20px; border-radius:10px; width:90%; max-width:500px; position:relative;}
+.close {position:absolute; top:10px; right:15px; font-size:24px; font-weight:bold; color:#333; cursor:pointer;}
+.modal h3 {text-align:center; margin-bottom:20px;}
+.rainbowChar {display:inline-block; animation: colorChar 3s linear infinite, moveChar 2s ease-in-out infinite alternate;}
+@keyframes colorChar {0%{color:#ff0000;}16%{color:#ff7f00;}32%{color:#ffff00;}48%{color:#00ff00;}64%{color:#0000ff;}80%{color:#4b0082;}100%{color:#8b00ff;}}
+@keyframes moveChar {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
+#movingSubtitle {color:#ffff66; animation: fadeInOut 4s ease-in-out infinite;}
+@keyframes fadeInOut {0%{opacity:0;}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+@media(max-width:768px){header h1{font-size:1.5em;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="rainbowTitle">Koperasi Konsumen Anugerah Prima Sejahtera</h1>
+  <p id="movingSubtitle">"Uang bisa habis, tapi kebiasaan finansial yang baik akan terus memberimu arah"</p>
+</header>
+
+<nav>
+  <div class="menu">
+    <a href="#produk">Produk</a>
+    <a href="#laporan">Laporan</a>
+    <a href="#saran">Saran</a>
+    <a href="#anggota">Daftar Anggota</a>
+    <a href="#simpanan">Simpanan Pokok</a>
+    <a href="#toko">Toko Anggota</a>
+  </div>
+  <div class="auth-buttons">
+    <a href="#" onclick="openModal('loginModal')">Login</a>
+    <a href="#" onclick="openModal('daftarModal')">Daftar</a>
+  </div>
+</nav>
+
+<section id="produk">
+  <h2>Produk Koperasi</h2>
+  <div class="produk">
+    <div>Sembako</div>
+    <div>Peralatan Rumah Tangga</div>
+    <div>Pakaian</div>
+    <div>Elektronik</div>
+  </div>
+</section>
+
+<section id="laporan">
+  <h2>Balance Sheet (Neraca) 2023</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Aset</th>
+        <th>Tahun Lalu</th>
+        <th>Tahun Ini</th>
+        <th>-%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Aset Lancar</strong></td><td></td><td></td><td></td></tr>
+      <tr><td>Kas Kecil</td><td>-7.639.550</td><td>15.710.000</td><td>-206%</td></tr>
+      <tr><td>Kas Besar</td><td>6.508.200</td><td>72.248.050</td><td>1110%</td></tr>
+      <tr><td>Bank</td><td>1.126.899</td><td>24.038.218</td><td>2133%</td></tr>
+      <tr><td>Piutang Dagang - Karyawan</td><td>47.934.000</td><td>19.349.500</td><td>40%</td></tr>
+      <tr><td>Piutang Dagang - Perusahaan</td><td>24.370.000</td><td>33.203.500</td><td>136%</td></tr>
+      <tr><td>Perlengkapan</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td>Persediaan</td><td>11.644.500</td><td>35.165.800</td><td>302%</td></tr>
+      <tr><td><strong>Total Aset Lancar</strong></td><td>83.944.049</td><td>199.715.068</td><td>238%</td></tr>
+
+      <tr><td><strong>Aset Tetap</strong></td><td></td><td></td><td></td></tr>
+      <tr><td>Tanah dan Bangunan</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td>Mesin dan Peralatan</td><td>7.190.000</td><td>12.855.000</td><td>179%</td></tr>
+      <tr><td>Kendaraan</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td>Dikurang: Akumulasi Penyusutan</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td><strong>Total Aset Tetap</strong></td><td>7.190.000</td><td>12.855.000</td><td>179%</td></tr>
+
+      <tr><td><strong>Total Aset</strong></td><td>91.134.049</td><td>212.570.068</td><td>233%</td></tr>
+
+      <tr><td colspan="4"><strong>Kewajiban dan Ekuitas</strong></td></tr>
+      <tr><td><em>Utang Jangka Pendek</em></td><td></td><td></td><td></td></tr>
+      <tr><td>Utang Dagang</td><td>21.415.000</td><td>-</td><td>0%</td></tr>
+      <tr><td>Utang Bank</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td>Utang Lain-Lain</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td>Utang Pajak Penghasilan</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td><strong>Total Utang Jangka Pendek</strong></td><td>21.415.000</td><td>-</td><td>0%</td></tr>
+
+      <tr><td><em>Utang Jangka Panjang</em></td><td></td><td></td><td></td></tr>
+      <tr><td>Utang Hipotek</td><td>-</td><td>-</td><td>0%</td></tr>
+      <tr><td><strong>Total Utang Jangka Panjang</strong></td><td>-</td><td>-</td><td>0%</td></tr>
+
+      <tr><td><em>Ekuitas Pemilik</em></td><td></td><td></td><td></td></tr>
+      <tr><td>Simpanan Sukarela</td><td>-</td><td>39.163.160</td><td>0%</td></tr>
+      <tr><td>Simpanan Pokok</td><td>8.400.000</td><td>8.200.000</td><td>98%</td></tr>
+      <tr><td>Simpanan Wajib</td><td>29.100.000</td><td>21.900.000</td><td>75%</td></tr>
+      <tr><td>Dana Cadangan</td><td>-</td><td>9.260.748</td><td>0%</td></tr>
+      <tr><td>Laba Ditahan</td><td>32.219.049</td><td>134.046.160</td><td>416%</td></tr>
+      <tr><td><strong>Total Ekuitas Pemilik</strong></td><td>69.719.049</td><td>212.570.068</td><td>305%</td></tr>
+
+      <tr><td><strong>Total Utang dan Ekuitas Pemilik</strong></td><td>91.134.049</td><td>212.570.068</td><td>233%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="saran">
+  <h2>Kotak Saran</h2>
+  <form onsubmit="tambahSaran(event)">
+    <input type="text" id="namaSaran" placeholder="Nama" required>
+    <textarea id="isiSaran" placeholder="Tulis saran..." required></textarea>
+    <button type="submit">Kirim</button>
+  </form>
+  <div id="saranMasuk">
+    <h3>Saran Masuk</h3>
+    <ul id="daftarSaran"></ul>
+  </div>
+</section>
+
+<section id="anggota">
+  <h2>Daftar Anggota</h2>
+  <form onsubmit="tambahAnggota(event)">
+    <input type="text" id="namaAnggota" placeholder="Nama Anggota" required>
+    <button type="submit">Tambah</button>
+  </form>
+  <ul id="daftarAnggota"></ul>
+</section>
+
+<section id="simpanan">
+  <h2>Simpanan Pokok</h2>
+  <button onclick="tampilkanAnggota()">Lihat Data Anggota</button>
+  <ul id="anggotaSimpanan"></ul>
+</section>
+
+<section id="toko">
+  <h2>Toko Anggota</h2>
+  <button onclick="tampilkanToko()">Lihat Daftar Barang</button>
+  <ul id="daftarToko"></ul>
+</section>
+
+<footer>
+  <p>&copy; 2025 Koperasi Konsumen Anugerah Prima Sejahtera</p>
+</footer>
+
+<!-- Modal Login -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h3>Login</h3>
+    <form>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Masuk</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Daftar -->
+<div id="daftarModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('daftarModal')">&times;</span>
+    <h3>Daftar Anggota</h3>
+    <form>
+      <input type="text" placeholder="Nama" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Daftar</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// rainbow judul
+const title=document.getElementById('rainbowTitle');
+const text=title.textContent; title.textContent='';
+for(let i=0;i<text.length;i++){
+  const span=document.createElement('span');
+  span.textContent=text[i];
+  span.classList.add('rainbowChar');
+  span.style.animationDelay=(i*0.1)+'s';
+  title.appendChild(span);
+}
+
+// modal
+function openModal(id){document.getElementById(id).style.display='block';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+
+// saran
+function tambahSaran(e){
+  e.preventDefault();
+  const nama=document.getElementById('namaSaran').value;
+  const isi=document.getElementById('isiSaran').value;
+  const li=document.createElement('li');
+  li.textContent=`${nama}: ${isi}`;
+  const btn=document.createElement('button');
+  btn.textContent='Hapus';
+  btn.onclick=()=>li.remove();
+  li.appendChild(btn);
+  document.getElementById('daftarSaran').appendChild(li);
+  e.target.reset();
+}
+
+// anggota
+function tambahAnggota(e){
+  e.preventDefault();
+  const nama=document.getElementById('namaAnggota').value;
+  const li=document.createElement('li');
+  li.textContent=nama;
+  const btn=document.createElement('button');
+  btn.textContent='Hapus';
+  btn.onclick=()=>li.remove();
+  li.appendChild(btn);
+  document.getElementById('daftarAnggota').appendChild(li);
+  e.target.reset();
+}
+
+// simpanan pokok
+function tampilkanAnggota(){
+  const list=document.getElementById('daftarAnggota').cloneNode(true);
+  document.getElementById('anggotaSimpanan').innerHTML=list.innerHTML;
+}
+
+// toko anggota
+function tampilkanToko(){
+  const barang=['Beras','Gula','Minyak Goreng','Sabun','Kopi'];
+  const daftar=document.getElementById('daftarToko');
+  daftar.innerHTML='';
+  barang.forEach(item=>{
+    const li=document.createElement('li');
+    li.textContent=item;
+    daftar.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
